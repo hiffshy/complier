@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Грамматика</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Грамматика</h1>
+    <div class="grammar">
+        <h2>Терминалы (V<sub>T</sub>):</h2>
+        { 
+        "printf", "(", ")", ";", "\"", ",", "%",
+        "d", "i", "u", "f", "c", "s", "x", "o", "p",
+        "0"-"9", "a"-"z", "A"-"Z", "_", " ", "+", "-", ".", "*"
+        }<br>
+        <h2>Нетерминалы (V<sub>N</sub>):</h2>
+        {
+        ‹PrintfCall›,
+        ‹Args›,
+        ‹Arg›,
+        ‹FormatStr›,
+        ‹Specifier›,
+        ‹CharSeq›,
+        ‹Ident›,
+        ‹Digits›
+        }<br>
+        <h2>Продукции (P):</h2>
+        {
+        <br>
+        1) ‹PrintfCall› → printf ( ‹FormatStr› ‹Args› ) ;<br>
+        2) ‹Args› → ε  | , ‹Arg› ‹Args›<br>
+        3) ‹Arg› → ‹Ident› | ‹Digits›<br>
+        4) ‹FormatStr› → " ‹CharSeq› "<br>
+        5) ‹CharSeq› → ε | \% ‹Specifier› ‹CharSeq› | [^%] ‹CharSeq›<br>
+        6) ‹Specifier› → d | i | u | f | c | s | x | o | p<br>
+        7) ‹Ident› → [a-zA-Z_] ‹IdentTail›
+            ‹IdentTail› → ε | [a-zA-Z0-9_] ‹IdentTail›<br>
+        8)‹Digits› → [0-9] ‹DigitsTail›
+            ‹DigitsTail› → ε | [0-9] ‹DigitsTail›<br>
+        }
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
